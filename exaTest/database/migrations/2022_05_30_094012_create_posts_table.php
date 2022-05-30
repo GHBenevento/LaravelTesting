@@ -16,7 +16,29 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->string('title');
+            $table->string('extract');
+            $table->string('content');
+            $table->boolean('expires')->nullable();
+            $table->boolean('comment')->nullable();
+            $table->enum('access', ['private', 'public']);
+            
+            $table->date('date')->nullable();
+
+
         });
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')
+            ->nullable()
+            ->after('id');
+            $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onUpdate('cascade')
+            ->onDelete('set null');
+            });
     }
 
     /**
@@ -29,3 +51,4 @@ class CreatePostsTable extends Migration
         Schema::dropIfExists('posts');
     }
 }
+
