@@ -60,27 +60,27 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $data = Post::find($id);
-        return view('create.index', compact('data'));
-    }
+    // public function edit($id)
+    // {
+    //     $post = Post::find($id);
+    //     return view('posts.edit', $post);
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
-        $post = request()->except('_token');
-        Post::insert($post);
-        
-        $data = Post::all();
-        return view('posts.index', compact('data'));
-    }
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  \App\Models\Post  $post
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function update(Request $request, Post $post)
+    // {
+    //     $post->fill($request->all());        
+    //     $post->save();
+
+    //     $data = Post::all();
+    //     return view('posts.index', compact('data'));
+    // }
 
     /**
      * Remove the specified resource from storage.

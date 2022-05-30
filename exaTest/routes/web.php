@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -24,3 +21,14 @@ Route::get('/dashboard', function () {
 Route::get('/set_language/{lang}', [Controller::class, 'set_language'])->name('set_language');
 
 require __DIR__.'/auth.php';
+
+
+Route::redirect('/', '/index');
+
+Route::get('/index', [PostController::class,'index']);
+
+Route::get('/create', [PostController::class,'create']);
+
+// Route::get('/edit/{id}', [PostController::class,'edit']);
+
+Route::resource('/posts',PostController::class);

@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/post/{id}', [apiRestController::class, 'get']);
+
+Route::get('/post', [apiRestController::class, 'show']);
+
+Route::post('/post', [apiRestController::class, 'create']);
+
+Route::patch('/post/{id}', [apiRestController::class, 'update']);
+
+Route::delete('/post/{id}', [apiRestController::class, 'delete']);
