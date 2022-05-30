@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $data = Post::all();
+        return view('posts.index', compact('data'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create'); 
     }
 
     /**
@@ -35,7 +36,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newData = request()->except('_token');
+        Post::insert($newData);
+        
+        $data = Post::all();
+        return view('posts.index', compact('data'));
     }
 
     /**
@@ -46,7 +51,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -55,9 +60,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $data = Post::find($id);
+        return view('create.index', compact('data'));
     }
 
     /**
@@ -67,9 +73,13 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request)
     {
-        //
+        $post = request()->except('_token');
+        Post::insert($post);
+        
+        $data = Post::all();
+        return view('posts.index', compact('data'));
     }
 
     /**
@@ -78,8 +88,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        Post::destroy($id);
+        return redirect()->route('posts.index');
     }
 }

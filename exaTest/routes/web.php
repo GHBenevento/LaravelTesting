@@ -21,4 +21,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/set_language/{lang}', [Controller::class, 'set_language'])->name('set_language');
+
 require __DIR__.'/auth.php';
