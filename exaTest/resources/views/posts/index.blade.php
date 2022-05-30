@@ -5,7 +5,8 @@
 <section class="antialiased bg-gray-100 text-gray-600 h-screen px-4">
     <div class="mb-10 ">
         <div class="mb-5">
-            <h2 class="text-xl">@lang("Posts")</h2>
+
+            <h2 class="text-center pt-5">{{ __('Posts') }}</h2>
         </div>
         @auth
         @can('create', \App\Models\Post::class)
@@ -19,8 +20,8 @@
     <div class="w-full max-w-8xl mx-auto bg-white shadow-lg rounded border border-gray-200">
         <div class="p-3">
             <div class="overflow-x-auto">
-                <table class="table-auto w-full">
-                    <thead class="text-xs font-semibold uppercase text-gray-400">
+                <table class="table table-secondary align-middle">
+                    <thead class="text-md font-semibold uppercase text-gray-400 align-middle">
                         <tr>
                             @auth
                             @can('viewAll',
@@ -58,7 +59,7 @@
                             @endauth
                         </tr>
                     </thead>
-                    <tbody class="text-sm divide-y divide-gray-100">
+                    <tbody class="text-md table-borderless align-middle">
                         @foreach ($data as $post)
                         <tr>
                             @auth
